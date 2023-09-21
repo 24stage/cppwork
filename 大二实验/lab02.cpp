@@ -203,3 +203,65 @@ int main()
 
     return 0;
 }
+//2(6)
+#include <iostream>
+#include <string.h>
+using namespace std;
+
+class Student
+{
+private:
+    char name[18];
+    int num,math_score,english_score;
+    static int math_total;
+    static int english_total;
+    static int count;
+public:
+    Student(const char na[],int nu,int m,int e):num(nu),math_score(m),english_score(e)//此处不用const会有警告
+    {
+        strcpy(name,na);
+        count++;
+        math_total+=m;
+        english_total+=e;
+        
+    }
+    void showbase();
+    static void showstatic();
+
+    
+};
+
+int Student::count=0;
+int Student::math_total=0;
+int Student::english_total=0;
+
+void Student::showbase()
+{
+    cout<<"count:"<<count<<endl;
+    cout<<"name:"<<name<<endl;
+    cout<<"num:"<<num<<endl;
+    cout<<"math_score:"<<math_score<<endl;
+    cout<<"e_score:"<<english_score<<endl;
+    
+}
+
+void Student::showstatic()
+{
+    cout<<"total_num"<<count<<endl;
+    cout<<"total_math"<<math_total<<endl;
+    cout<<"total_english"<<english_total<<endl;
+
+}
+
+int main()
+{
+    Student stu1("李乐",0001,95,98);
+    stu1.showbase();
+
+    Student stu2("Bob",0002,90,99);
+    stu2.showbase();
+    
+    Student::showstatic();
+
+    return 0;
+}
